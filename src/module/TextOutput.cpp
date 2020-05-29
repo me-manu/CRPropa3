@@ -158,11 +158,11 @@ void TextOutput::process(Candidate *c) const {
 	std::locale old_locale = std::locale::global(std::locale::classic());
 
 	if (fields.test(TrajectoryLengthColumn))
-		p += std::sprintf(buffer + p, "%8.5E\t",
+		p += std::sprintf(buffer + p, "%12.9E\t",
 				c->getTrajectoryLength() / lengthScale);
 
 	if (fields.test(RedshiftColumn))
-		p += std::sprintf(buffer + p, "%1.5E\t", c->getRedshift());
+		p += std::sprintf(buffer + p, "%12.9E\t", c->getRedshift());
 
 	if (fields.test(SerialNumberColumn))
 		p += std::sprintf(buffer + p, "%10lu\t",
@@ -170,22 +170,22 @@ void TextOutput::process(Candidate *c) const {
 	if (fields.test(CurrentIdColumn))
 		p += std::sprintf(buffer + p, "%10i\t", c->current.getId());
 	if (fields.test(CurrentEnergyColumn))
-		p += std::sprintf(buffer + p, "%8.5E\t",
+		p += std::sprintf(buffer + p, "%12.9E\t",
 				c->current.getEnergy() / energyScale);
 	if (fields.test(CurrentPositionColumn)) {
 		if (oneDimensional) {
-			p += std::sprintf(buffer + p, "%8.5E\t",
+			p += std::sprintf(buffer + p, "%12.9E\t",
 					c->current.getPosition().x / lengthScale);
 		} else {
 			const Vector3d pos = c->current.getPosition() / lengthScale;
-			p += std::sprintf(buffer + p, "%8.5E\t%8.5E\t%8.5E\t", pos.x, pos.y,
+			p += std::sprintf(buffer + p, "%12.9E\t%12.9E\t%12.9E\t", pos.x, pos.y,
 					pos.z);
 		}
 	}
 	if (fields.test(CurrentDirectionColumn)) {
 		if (not oneDimensional) {
 			const Vector3d pos = c->current.getDirection();
-			p += std::sprintf(buffer + p, "%8.5E\t%8.5E\t%8.5E\t", pos.x, pos.y,
+			p += std::sprintf(buffer + p, "%12.9E\t%12.9E\t%12.9E\t", pos.x, pos.y,
 					pos.z);
 		}
 	}
@@ -195,22 +195,22 @@ void TextOutput::process(Candidate *c) const {
 	if (fields.test(SourceIdColumn))
 		p += std::sprintf(buffer + p, "%10i\t", c->source.getId());
 	if (fields.test(SourceEnergyColumn))
-		p += std::sprintf(buffer + p, "%8.5E\t",
+		p += std::sprintf(buffer + p, "%12.9E\t",
 				c->source.getEnergy() / energyScale);
 	if (fields.test(SourcePositionColumn)) {
 		if (oneDimensional) {
-			p += std::sprintf(buffer + p, "%8.5E\t",
+			p += std::sprintf(buffer + p, "%12.9E\t",
 					c->source.getPosition().x / lengthScale);
 		} else {
 			const Vector3d pos = c->source.getPosition() / lengthScale;
-			p += std::sprintf(buffer + p, "%8.5E\t%8.5E\t%8.5E\t", pos.x, pos.y,
+			p += std::sprintf(buffer + p, "%12.9E\t%12.9E\t%12.9E\t", pos.x, pos.y,
 					pos.z);
 		}
 	}
 	if (fields.test(SourceDirectionColumn)) {
 		if (not oneDimensional) {
 			const Vector3d pos = c->source.getDirection();
-			p += std::sprintf(buffer + p, "%8.5E\t%8.5E\t%8.5E\t", pos.x, pos.y,
+			p += std::sprintf(buffer + p, "%12.9E\t%12.9E\t%12.9E\t", pos.x, pos.y,
 					pos.z);
 		}
 
@@ -222,27 +222,27 @@ void TextOutput::process(Candidate *c) const {
 	if (fields.test(CreatedIdColumn))
 		p += std::sprintf(buffer + p, "%10i\t", c->created.getId());
 	if (fields.test(CreatedEnergyColumn))
-		p += std::sprintf(buffer + p, "%8.5E\t",
+		p += std::sprintf(buffer + p, "%12.9E\t",
 				c->created.getEnergy() / energyScale);
 	if (fields.test(CreatedPositionColumn)) {
 		if (oneDimensional) {
-			p += std::sprintf(buffer + p, "%8.5E\t",
+			p += std::sprintf(buffer + p, "%12.9E\t",
 					c->created.getPosition().x / lengthScale);
 		} else {
 			const Vector3d pos = c->created.getPosition() / lengthScale;
-			p += std::sprintf(buffer + p, "%8.5E\t%8.5E\t%8.5E\t", pos.x, pos.y,
+			p += std::sprintf(buffer + p, "%12.9E\t%12.9E\t%12.9E\t", pos.x, pos.y,
 					pos.z);
 		}
 	}
 	if (fields.test(CreatedDirectionColumn)) {
 		if (not oneDimensional) {
 			const Vector3d pos = c->created.getDirection();
-			p += std::sprintf(buffer + p, "%8.5E\t%8.5E\t%8.5E\t", pos.x, pos.y,
+			p += std::sprintf(buffer + p, "%12.9E\t%12.9E\t%12.9E\t", pos.x, pos.y,
 					pos.z);
 		}
 	}
 	if (fields.test(WeightColumn)) {
-		p += std::sprintf(buffer + p, "%8.5E\t", c->getWeight());
+		p += std::sprintf(buffer + p, "%12.9E\t", c->getWeight());
 	}
 
 	for(std::vector<Output::Property>::const_iterator iter = properties.begin();
